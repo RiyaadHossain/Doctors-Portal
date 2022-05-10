@@ -2,8 +2,8 @@ import React from "react";
 import quate from "../../../../Assets/Icons/quote.svg";
 import Review from "./Review";
 import People1 from "../../../../Assets/Images/people1.png"
-// import People2 from "../../../../Assets/Images/people2.png"
-// import People3 from "../../../../Assets/Images/people3.png"
+import person2 from "../../../../Assets/Images/person2.jpg"
+import person3 from "../../../../Assets/Images/person3.jpg"
 
 const Testomonial = () => {
   const reviews = [
@@ -18,7 +18,7 @@ const Testomonial = () => {
     {
       id: 1,
       name: "Winson Herry",
-      img: People1,
+      img: person2,
       location: "California",
       review:
         "It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content",
@@ -26,7 +26,7 @@ const Testomonial = () => {
     {
       id: 1,
       name: "Winson Herry",
-      img: People1,
+      img: person3,
       location: "California",
       review:
         "It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content",
