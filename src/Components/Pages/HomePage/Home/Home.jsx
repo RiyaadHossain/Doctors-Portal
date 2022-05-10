@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "../Banner/Banner";
 import Doctor from "../Others/Doctor";
 import Hero from "../Others/Hero";
+import HomeContact from "../Others/HomeContact";
 import Info from "../Others/Info";
 import Services from "../Others/Services";
 import Testomonial from "../Others/Testomonial";
@@ -17,6 +18,7 @@ const Home = () => {
       </div>
         <Doctor/>
         <Testomonial/>
+        <HomeContact/>
     </div>
   );
 };
