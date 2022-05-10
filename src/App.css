@@ -1,0 +1,10 @@
+.hero_btn{
+    background: linear-gradient(104deg, rgba(253,253,254,1) 0%, rgba(11,219,195,1) 0%, rgba(0,212,255,1) 100%);
+
+}
+
+.hero{
+    background-image: url(./Assets/Images/bg.png);
+    background-size: cover;
+    background-position: center center;
+}
