@@ -8,3 +8,10 @@
     background-size: cover;
     background-position: center center;
 }
+
+.footer-bg{
+    background-image: url(./Assets/Images/footer.png);
+    background-position: center center;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, .2);
+}
