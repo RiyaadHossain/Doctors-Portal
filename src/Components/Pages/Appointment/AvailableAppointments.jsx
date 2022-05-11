@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import Service from "./Service";
 
-const AvailableAppointments = ({ date }) => {
+const AvailableAppointments = ({ date, setTreatment }) => {
     const [appointments, setAppointments] = useState([])
     useEffect(() => {
         fetch('data.json')
@@ -15,7 +15,7 @@ const AvailableAppointments = ({ date }) => {
         You Have Picked {format(date, "PP")}.
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {appointments.map(appointment => <Service key={appointment._id} service={appointment}/>)}
+          {appointments.map(appointment => <Service key={appointment._id} service={appointment} setTreatment={setTreatment}/>)}
       </div>
     </div>
   );
