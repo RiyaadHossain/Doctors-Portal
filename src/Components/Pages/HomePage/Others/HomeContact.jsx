@@ -2,6 +2,9 @@ import React from "react";
 import contact from "../../../../Assets/Images/appointment.png";
 
 const HomeContact = () => {
+    const formSubmit= () => {
+        console.log('Form Submitted');
+    }
   return (
     <div style={{ background: `url(${contact})` }} className="py-16">
       <div className="text-center mb-5">
@@ -9,7 +12,7 @@ const HomeContact = () => {
         <h3 className="text-white text-3xl">Stay Connected with Us</h3>
       </div>
       <div className="text-center mt-2">
-        <form>
+        <form onSubmit={formSubmit}>
           <input
             className="block mx-auto w-[600px] px-5 py-3 mb-3"
             type="text"
