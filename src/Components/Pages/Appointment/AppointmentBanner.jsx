@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import Chair from "../../../Assets/Images/chair.png";
@@ -20,6 +21,9 @@ const AppointmentBanner = ({date, setDate}) => {
             selected={date}
             onSelect={setDate}
           />
+          <p className="text-lg text-blue-700">
+        You Have Picked {format(date, "PP")}.
+      </p>
         </div>
       </div>
     </div>

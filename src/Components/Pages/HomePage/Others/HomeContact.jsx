@@ -2,9 +2,9 @@ import React from "react";
 import contact from "../../../../Assets/Images/appointment.png";
 
 const HomeContact = () => {
-    const formSubmit= () => {
-        console.log('Form Submitted');
-    }
+  const formSubmit = () => {
+    console.log("Form Submitted");
+  };
   return (
     <div style={{ background: `url(${contact})` }} className="py-16">
       <div className="text-center mb-5">
@@ -29,7 +29,8 @@ const HomeContact = () => {
             rows="7"
           ></textarea>
           <input
-            value="submit"
+            type="submit"
+            value="Send"
             className="btn bg-gradient-to-tr text-white hero_btn uppercase font-bold btn-primary"
           />
         </form>
