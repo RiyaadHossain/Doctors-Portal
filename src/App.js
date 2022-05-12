@@ -4,7 +4,8 @@ import About from "./Components/Pages/About/About";
 import Appointment from "./Components/Pages/Appointment/AppointmentMain";
 import Contact from "./Components/Pages/Contact/Contact";
 import Home from "./Components/Pages/HomePage/Home/Home";
-import LogIn from "./Components/Pages/LogIn/LogIn";
+import LogIn from "./Components/Pages/Login/LogIn";
+import Signup from "./Components/Pages/Login/Signup";
 import Reviews from "./Components/Pages/Reviews/Reviews";
 import Navbar from "./Components/Pages/Shared/Navbar/Navbar";
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/reviews" element={<Reviews/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/login" element={<LogIn/>}/>
+        <Route path="/signup" element={<Signup/>}/>
       </Routes>
     </div>
   );

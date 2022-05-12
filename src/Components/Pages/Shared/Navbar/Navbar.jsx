@@ -1,44 +1,79 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { NavLink } from "react-router-dom";
-import "./Navbar.css"
+import auth from "../../../../Firebase/Firebase.init";
+import "./Navbar.css";
 
 const Navbar = () => {
+  const [user] = useAuthState(auth);
+  const logOut = () => {
+    signOut(auth);
+  };
   const menuItems = (
     <>
       <li>
-        <NavLink className={({ isActive }) =>
-              isActive ? 'activeLink' : 'link'
-            } to="/">Home</NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? "activeLink" : "link")}
+          to="/"
+        >
+          Home
+        </NavLink>
       </li>
 
       <li>
-        <NavLink className={({ isActive }) =>
-              isActive ? 'activeLink' : 'link'
-            } to="/about"> About</NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? "activeLink" : "link")}
+          to="/about"
+        >
+          {" "}
+          About
+        </NavLink>
       </li>
 
       <li>
-        <NavLink className={({ isActive }) =>
-              isActive ? 'activeLink' : 'link'
-            } to="/appointment">Appointment</NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? "activeLink" : "link")}
+          to="/appointment"
+        >
+          Appointment
+        </NavLink>
       </li>
 
       <li>
-        <NavLink className={({ isActive }) =>
-              isActive ? 'activeLink' : 'link'
-            } to="/reviews">Reviews</NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? "activeLink" : "link")}
+          to="/reviews"
+        >
+          Reviews
+        </NavLink>
       </li>
 
       <li>
-        <NavLink className={({ isActive }) =>
-              isActive ? 'activeLink' : 'link'
-            } to="/contact">Contact Us</NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? "activeLink" : "link")}
+          to="/contact"
+        >
+          Contact Us
+        </NavLink>
       </li>
-      <li>
-        <NavLink className={({ isActive }) =>
-              isActive ? 'activeLink' : 'link'
-            } to="/login">Login</NavLink>
-      </li>
+      {user ? (
+        <button
+          onClick={logOut}
+          className="btn btn-ghost text-gray-900 font-semibold"
+        >
+          Sign Out
+        </button>
+      ) : (
+        <li>
+          <NavLink
+            className={({ isActive }) => (isActive ? "activeLink" : "link")}
+            to="/login"
+          >
+            Login
+          </NavLink>
+        </li>
+      )}
     </>
   );
   return (

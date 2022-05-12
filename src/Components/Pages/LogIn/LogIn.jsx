@@ -1,6 +1,7 @@
 import React from "react";
 import auth from "../../../Firebase/Firebase.init";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
@@ -122,14 +123,19 @@ const LogIn = () => {
             <input
               className="btn mx-auto w-full bg-slate-600 text-gray-100 hover:text-white border-slate-600 max-w-xs"
               type="submit"
+              value="Log In"
             />
           </div>
         </form>
-
+        <p className="text-center mt-1 text-xs">
+          {" "}
+          New to Doctors Portal{" "}
+          <Link to='/signup' className="text-primary"> Create an Account</Link>
+        </p>
         <div className="divider text-black">OR</div>
         <button
           onClick={() => signInWithGoogle()}
-          className="btn border-black text-black btn-outline"
+          className="btn hover:bg-slate-900 border-black text-black btn-outline"
         >
           Continue With Google
         </button>
