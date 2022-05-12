@@ -4,9 +4,9 @@ const Service = ({ service, setTreatment }) => {
   const { slots } = service;
   return (
     <div>
-      <div class="card w-96 mx-auto bg-base-100 shadow-xl">
-        <div class="card-body items-center text-black">
-          <h2 class="card-title text-center text-2xl text-secondary">
+      <div className="card w-96 mx-auto bg-base-100 shadow-xl">
+        <div className="card-body items-center text-black">
+          <h2 className="card-title text-center text-2xl text-secondary">
             {service.name}
           </h2>
           <p className="uppercase text-sm">
