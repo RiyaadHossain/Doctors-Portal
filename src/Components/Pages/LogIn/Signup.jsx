@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import auth from "../../../Firebase/Firebase.init";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Spinner from "../Shared/Spinner/Spinner";
 import {
   useCreateUserWithEmailAndPassword,
@@ -20,6 +20,9 @@ const Signup = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const navigate = useNavigate();
+  const location = useLocation()
+
+  let from = location.state?.from?.pathname || "/";
 
   let signInError;
 
@@ -31,18 +34,20 @@ const Signup = () => {
     );
   }
 
+  useEffect( () =>{
+    if (user || gUser) {
+        navigate(from, { replace: true });
+    }
+}, [user, gUser, from, navigate])
+
   if (loading || gLoading || updating) {
     return <Spinner />;
-  }
-
-  if (user || gUser) {
-    console.log(user || gUser);
   }
 
   const onSubmit = async(data) => {
    await createUserWithEmailAndPassword(data.email, data.password);
    await updateProfile({ displayName: data.name })
-   navigate('/appointment');
+  //  window.location.reload()
   };
 
   return (

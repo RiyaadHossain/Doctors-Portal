@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import auth from "../../../Firebase/Firebase.init";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
@@ -17,9 +17,19 @@ const LogIn = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  let navigate = useNavigate();
+  let location = useLocation();
+
+  let from = location.state?.from?.pathname || "/";
 
   let signInError;
 
+  useEffect(() => {
+    if (user || gUser) {
+      navigate(from, { replace: true });
+    }
+  }, [user, gUser, from, navigate]);
+  
   if (error || gError) {
     signInError = (
       <p className="text-red-600 ml-4 mb-2 text-sm">
@@ -30,10 +40,6 @@ const LogIn = () => {
 
   if (loading || gLoading) {
     return <Spinner />;
-  }
-
-  if (user || gUser) {
-    console.log(user || gUser);
   }
 
   const onSubmit = (data) => {
@@ -130,7 +136,10 @@ const LogIn = () => {
         <p className="text-center mt-1 text-xs">
           {" "}
           New to Doctors Portal{" "}
-          <Link to='/signup' className="text-primary"> Create an Account</Link>
+          <Link to="/signup" className="text-primary">
+            {" "}
+            Create an Account
+          </Link>
         </p>
         <div className="divider text-black">OR</div>
         <button
