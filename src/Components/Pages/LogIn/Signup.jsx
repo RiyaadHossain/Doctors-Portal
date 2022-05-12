@@ -46,8 +46,7 @@ const Signup = () => {
 
   const onSubmit = async(data) => {
    await createUserWithEmailAndPassword(data.email, data.password);
-   await updateProfile({ displayName: data.name })
-  //  window.location.reload()
+   await updateProfile({ displayName: data.text })
   };
 
   return (
@@ -163,7 +162,7 @@ const Signup = () => {
             />
           </div>
         </form>
-        <p className="text-center mt-1 text-xs">
+        <p className="text-center mt-3 text-sm">
           {" "}
           Already have an account{" "}
           <Link to="/login" className="text-primary">

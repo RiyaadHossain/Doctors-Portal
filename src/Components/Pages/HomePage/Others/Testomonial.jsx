@@ -16,7 +16,7 @@ const Testomonial = () => {
         "It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content",
     },
     {
-      id: 1,
+      id: 2,
       name: "Winson Herry",
       img: person2,
       location: "California",
@@ -24,7 +24,7 @@ const Testomonial = () => {
         "It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content",
     },
     {
-      id: 1,
+      id: 3,
       name: "Winson Herry",
       img: person3,
       location: "California",

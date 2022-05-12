@@ -133,7 +133,7 @@ const LogIn = () => {
             />
           </div>
         </form>
-        <p className="text-center mt-1 text-xs">
+        <p className="text-center mt-3 text-sm">
           {" "}
           New to Doctors Portal{" "}
           <Link to="/signup" className="text-primary">
