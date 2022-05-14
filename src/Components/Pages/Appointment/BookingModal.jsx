@@ -14,7 +14,7 @@ const BookingModal = ({ treatment, setTreatment, date, refetch }) => {
     const slot = e.target.slot.value;
     console.log(_id, name, slot);
 
-    const formattedDate = format(date, "PP");
+    const formattedDate = date && format(date, "PP");
 
     const bookingData = {
       treatmentId: _id,
