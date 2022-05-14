@@ -3,19 +3,23 @@ import auth from "../../../Firebase/Firebase.init";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import Spinner from "../Shared/Spinner/Spinner";
+import { toast } from "react-toastify";
 
 const LogIn = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [sendPasswordResetEmail, sending, resetError] =
+    useSendPasswordResetEmail(auth);
   const {
     register,
     formState: { errors },
-    handleSubmit,
+    handleSubmit, getValues
   } = useForm();
   let navigate = useNavigate();
   let location = useLocation();
@@ -29,8 +33,8 @@ const LogIn = () => {
       navigate(from, { replace: true });
     }
   }, [user, gUser, from, navigate]);
-  
-  if (error || gError) {
+
+  if (error || gError || resetError) {
     signInError = (
       <p className="text-red-600 ml-4 mb-2 text-sm">
         {error?.message || gError?.message}
@@ -38,12 +42,19 @@ const LogIn = () => {
     );
   }
 
-  if (loading || gLoading) {
+  if (loading || gLoading || sending) {
     return <Spinner />;
   }
 
-  const onSubmit = (data) => {
-    signInWithEmailAndPassword(data.email, data.password);
+  const onSubmit = async(data) => {
+    await signInWithEmailAndPassword(data.email, data.password);
+    toast.success("Logged In");
+  };
+
+  const handleReset = async() => {
+    const email = getValues('email')
+    await sendPasswordResetEmail(email)
+    toast.success("Reset Email Sent")
   };
 
   return (
@@ -130,6 +141,14 @@ const LogIn = () => {
               className="btn mx-auto w-full bg-slate-600 text-gray-100 hover:text-white border-slate-600 max-w-xs"
               type="submit"
               value="Log In"
+            />
+          </div>
+          <div className="mt-2 ml-4">
+            <input
+              onClick={handleReset}
+              className="btn-link text-primary"
+              type="button"
+              value="Forget Password?"
             />
           </div>
         </form>
