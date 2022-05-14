@@ -1,5 +1,5 @@
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import About from "./Components/Pages/About/About";
 import Appointment from "./Components/Pages/Appointment/AppointmentMain";
 import Contact from "./Components/Pages/Contact/Contact";
@@ -9,8 +9,12 @@ import PrivateAuth from "./Components/Pages/Login/PrivateAuth";
 import Signup from "./Components/Pages/Login/Signup";
 import Reviews from "./Components/Pages/Reviews/Reviews";
 import Navbar from "./Components/Pages/Shared/Navbar/Navbar";
+import DashBoard from "./Components/Pages/DashBoard/DashBoard";
+import MyReviews from "./Components/Pages/DashBoard/MyReviews";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NotFound from "./Components/Pages/Shared/NotFound/NotFound";
+import MyAppointments from "./Components/Pages/DashBoard/MyAppointments";
 
 function App() {
   return (
@@ -27,10 +31,22 @@ function App() {
             </PrivateAuth>
           }
         />
+        <Route
+          path="dashboard"
+          element={
+            <PrivateAuth>
+              <DashBoard />
+            </PrivateAuth>
+          }
+        >
+          <Route index element={<MyAppointments></MyAppointments>}></Route>
+          <Route path="review" element={<MyReviews></MyReviews>}></Route>
+        </Route>
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       {/* Toast With Success Message */}

@@ -26,7 +26,6 @@ const Navbar = () => {
           className={({ isActive }) => (isActive ? "activeLink" : "link")}
           to="/about"
         >
-          {" "}
           About
         </NavLink>
       </li>
@@ -57,6 +56,16 @@ const Navbar = () => {
           Contact Us
         </NavLink>
       </li>
+      {user && (
+        <li>
+          <NavLink
+            className={({ isActive }) => (isActive ? "activeLink" : "link")}
+            to="/dashboard"
+          >
+            DashBoard
+          </NavLink>
+        </li>
+      )}
       {user ? (
         <button
           onClick={logOut}

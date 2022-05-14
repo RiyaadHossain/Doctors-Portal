@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../Firebase/Firebase.init";
 import { toast } from "react-toastify";
 
-const BookingModal = ({ treatment, setTreatment, date }) => {
+const BookingModal = ({ treatment, setTreatment, date, refetch }) => {
   const { _id, name, slots } = treatment;
   const [user] = useAuthState(auth);
 
@@ -38,6 +38,7 @@ const BookingModal = ({ treatment, setTreatment, date }) => {
         if (data.success) {
           // Toast With Success Message
           toast.success(data.message);
+          refetch()
         }
         else{
           toast.error(data.error)
