@@ -11,7 +11,7 @@ const MyAppointments = () => {
   useEffect(() => {
     fetch(`http://localhost:5000/booking?patient=${user.email}`, {
       headers: {
-        authorization: ` Bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => {
@@ -31,18 +31,18 @@ const MyAppointments = () => {
         <thead>
           <tr>
             <th></th>
-            <th>Treatment</th>
-            <th>Date</th>
-            <th>Time </th>
+            <th >Treatment</th>
+            <th >Date</th>
+            <th >Time </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           {bookings?.map((booking, i) => (
-            <tr key={booking._id}>
-              <th>{i + 1}</th>
-              <td>{booking.treatmentName}</td>
-              <td>{booking.treatmentDate}</td>
-              <td>{booking.slot}</td>
+            <tr className="bg-slate-700" key={booking._id}>
+              <th className="text-gray-700">{i + 1}</th>
+              <td className="text-gray-700">{booking.treatmentName}</td>
+              <td className="text-gray-700">{booking.treatmentDate}</td>
+              <td className="text-gray-700">{booking.slot}</td>
             </tr>
           ))}
         </tbody>
