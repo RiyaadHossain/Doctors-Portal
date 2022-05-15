@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const useAdmin = (user) => {
   const [admin, setAdmin] = useState(false);
+  const [adminLoading, setAdminLoading] = useState(true);
   const email = user?.email;
   fetch(`http://localhost:5000/users/${email}`, {
     headers: {
@@ -10,9 +11,12 @@ const useAdmin = (user) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      if (data.admin) setAdmin(data.admin);
+      if (data.admin) {
+        setAdmin(data.admin);
+    }
+    setAdminLoading(false);
     });
-  return [admin];
+  return [admin, adminLoading];
 };
 
 export default useAdmin;
