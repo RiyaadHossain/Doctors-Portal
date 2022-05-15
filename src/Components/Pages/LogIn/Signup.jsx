@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import auth from "../../../Firebase/Firebase.init";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -36,13 +36,10 @@ const Signup = () => {
     );
   }
 
-  useEffect(() => {
-   
-    if (token) {
-      navigate(from, { replace: true });
-    }
-  }, [token, from, navigate]);
 
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   if (loading || gLoading || updating) {
     return <Spinner />;

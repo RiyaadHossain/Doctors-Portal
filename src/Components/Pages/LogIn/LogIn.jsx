@@ -9,6 +9,7 @@ import {
 } from "react-firebase-hooks/auth";
 import Spinner from "../Shared/Spinner/Spinner";
 import { toast } from "react-toastify";
+import useToken from "../../../Hooks/useToken";
 
 const LogIn = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
@@ -21,6 +22,7 @@ const LogIn = () => {
     formState: { errors },
     handleSubmit, getValues
   } = useForm();
+  const [token] = useToken(user || gUser);
   let navigate = useNavigate();
   let location = useLocation();
 
@@ -29,10 +31,10 @@ const LogIn = () => {
   let signInError;
 
   useEffect(() => {
-    if (user || gUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, gUser, from, navigate]);
+  }, [token, from, navigate]);
 
   if (error || gError || resetError) {
     signInError = (
