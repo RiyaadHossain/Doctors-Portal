@@ -8,6 +8,7 @@ import {
   useSignInWithGoogle,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
+import useToken from "../../../Hooks/useToken";
 
 const Signup = () => {
   const {
@@ -19,8 +20,9 @@ const Signup = () => {
     useCreateUserWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [token] = useToken(user || gUser);
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
 
   let from = location.state?.from?.pathname || "/";
 
@@ -34,19 +36,21 @@ const Signup = () => {
     );
   }
 
-  useEffect( () =>{
-    if (user || gUser) {
-        navigate(from, { replace: true });
+  useEffect(() => {
+   
+    if (token) {
+      navigate(from, { replace: true });
     }
-}, [user, gUser, from, navigate])
+  }, [token, from, navigate]);
+
 
   if (loading || gLoading || updating) {
     return <Spinner />;
   }
 
-  const onSubmit = async(data) => {
-   await createUserWithEmailAndPassword(data.email, data.password);
-   await updateProfile({ displayName: data.text })
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.text });
   };
 
   return (
@@ -183,7 +187,6 @@ const Signup = () => {
 };
 
 export default Signup;
-
 
 // import React from "react";
 // import auth from "../../../Firebase/Firebase.init";
