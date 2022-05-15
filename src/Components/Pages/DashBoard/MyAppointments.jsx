@@ -1,19 +1,29 @@
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import auth from "../../../Firebase/Firebase.init";
 
 const MyAppointments = () => {
   const [user] = useAuthState(auth);
   const [bookings, setBookings] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(`http://localhost:5000/booking?patient=${user.email}`, {
       headers: {
         authorization: ` Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          navigate("/");
+          localStorage.removeItem("accessToken");
+        }
+        return res.json();
+      })
       .then((data) => setBookings(data));
-  }, [user]);
+  }, [user, navigate]);
 
   return (
     <div className="overflow-x-auto mr-6 mt-10">
@@ -27,7 +37,7 @@ const MyAppointments = () => {
           </tr>
         </thead>
         <tbody>
-          {bookings.map((booking, i) => (
+          {bookings?.map((booking, i) => (
             <tr key={booking._id}>
               <th>{i + 1}</th>
               <td>{booking.treatmentName}</td>
