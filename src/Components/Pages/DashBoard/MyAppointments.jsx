@@ -9,7 +9,7 @@ const MyAppointments = () => {
   const [bookings, setBookings] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`http://localhost:5000/booking?patient=${user.email}`, {
+    fetch(`https://enigmatic-retreat-83297.herokuapp.com/booking?patient=${user.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

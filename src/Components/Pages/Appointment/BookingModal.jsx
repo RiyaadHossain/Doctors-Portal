@@ -26,7 +26,7 @@ const BookingModal = ({ treatment, setTreatment, date, refetch }) => {
       slot,
     };
 
-    fetch("http://localhost:5000/booking", {
+    fetch("https://enigmatic-retreat-83297.herokuapp.com/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",
