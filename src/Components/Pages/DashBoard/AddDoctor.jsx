@@ -44,7 +44,7 @@ const AddDoctor = () => {
         console.log(doctor);
 
         // Post Doctors Data to Server
-        fetch("http://localhost:5000/adddoctor", {
+        fetch("https://enigmatic-retreat-83297.herokuapp.com/adddoctor", {
           method: "POST",
           headers: {
             "content-type": "application/json",
