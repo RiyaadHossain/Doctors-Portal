@@ -30,7 +30,7 @@ const UsersRow = ({ user, i, refetch }) => {
         {user.role !== "admin" ? (
           <button
             onClick={makeAdmin}
-            className="btn text-gray-700 hover:text-gray-50 border-gray-700 btn-xs"
+            className="btn text-white bg-success border-white btn-xs"
           >
             Make Admin
           </button>
@@ -39,7 +39,7 @@ const UsersRow = ({ user, i, refetch }) => {
         )}
       </td>
       <td className="text-gray-700">
-        <button className="btn text-gray-700 hover:text-gray-50 border-gray-700 btn-xs">
+        <button className="btn text-white bg-error border-white btn-xs">
           Remove
         </button>
       </td>
