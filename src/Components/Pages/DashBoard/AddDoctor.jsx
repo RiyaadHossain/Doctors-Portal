@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 import Spinner from "../Shared/Spinner/Spinner";
 
 const AddDoctor = () => {
@@ -8,6 +9,7 @@ const AddDoctor = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
 
   const { data: services, isLoading } = useQuery("service", () =>
@@ -20,8 +22,46 @@ const AddDoctor = () => {
     return <Spinner />;
   }
 
+  const imgUploadKey = "b20e07a3b33d3ccbb413087c3d9d148d";
+
   const onSubmit = async (data) => {
-    console.log(data);
+    const img = data.img[0];
+    const formData = new FormData();
+    formData.append("image", img);
+    const url = `https://api.imgbb.com/1/upload?key=${imgUploadKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        const doctor = {
+          imgURL: json.data.url,
+          name: data.text,
+          email: data.email,
+          speacility: data.speacility,
+        };
+        console.log(doctor);
+
+        // Post Doctors Data to Server
+        fetch("http://localhost:5000/adddoctor", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify(doctor),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            if (result.insertedId) {
+              toast.success("Doctor added Successfully");
+            } else {
+              toast.error("Failed to add Doctor");
+            }
+            reset();
+          });
+      });
   };
   return (
     <div>
