@@ -27,6 +27,7 @@ const MyAppointments = () => {
 
   return (
     <div className="overflow-x-auto mr-6 mt-10">
+      <h1 className="text-center mb-3 text-primary font-bold text-3xl">My Appointments</h1>
       <table className="table w-full">
         <thead>
           <tr>

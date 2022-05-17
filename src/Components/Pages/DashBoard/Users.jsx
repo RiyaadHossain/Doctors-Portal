@@ -14,6 +14,7 @@ const Users = () => {
   if (isLoading) return <Spinner />;
   return (
     <div className="overflow-x-auto mr-6 mt-10">
+      <h1 className="text-center text-3xl text-primary mb-3 font-bold">All Users</h1>
       <table className="table w-full">
         <thead>
           <tr>

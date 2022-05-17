@@ -65,7 +65,7 @@ const AddDoctor = () => {
   };
   return (
     <div>
-      <h1 className="text-center text-2xl text-secondary pt-12 font-semibold">
+      <h1 className="text-center text-3xl text-secondary pt-12 font-bold">
         Add a New Doctor 👨🏻‍⚕️
       </h1>
       <form
