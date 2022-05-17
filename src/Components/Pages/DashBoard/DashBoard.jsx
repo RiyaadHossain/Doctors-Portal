@@ -38,6 +38,11 @@ const DashBoard = () => {
                   Add Doctor
                 </Link>
               </li>
+              <li>
+                <Link className="text-black" to="/dashboard/doctors">
+                  Manage Doctor
+                </Link>
+              </li>
             </>
           )}
         </ul>
