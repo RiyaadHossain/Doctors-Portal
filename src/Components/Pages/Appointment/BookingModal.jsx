@@ -5,7 +5,7 @@ import auth from "../../../Firebase/Firebase.init";
 import { toast } from "react-toastify";
 
 const BookingModal = ({ treatment, setTreatment, date, refetch }) => {
-  const { _id, name, slots } = treatment;
+  const { _id, name, slots , price} = treatment;
   const [user] = useAuthState(auth);
 
   // On Form Submit
@@ -24,6 +24,7 @@ const BookingModal = ({ treatment, setTreatment, date, refetch }) => {
       patient: user.displayName,
       phone: e.target.phone.value,
       slot,
+      price: price
     };
 
     fetch("https://enigmatic-retreat-83297.herokuapp.com/booking", {
@@ -38,6 +39,7 @@ const BookingModal = ({ treatment, setTreatment, date, refetch }) => {
         if (data.success) {
           // Toast With Success Message
           toast.success(data.message);
+          console.log(data);
           refetch()
         }
         else{

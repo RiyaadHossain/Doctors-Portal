@@ -19,6 +19,7 @@ import Users from "./Components/Pages/DashBoard/Users";
 import RequireAdmin from "./Components/Pages/DashBoard/RequireAdmin";
 import AddDoctor from "./Components/Pages/DashBoard/AddDoctor";
 import ManageDoctors from "./Components/Pages/DashBoard/ManageDoctors";
+import Payment from "./Components/Pages/Appointment/Payment";
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
           ></Route>
         </Route>
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="/booking/:id" element={<Payment />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<Signup />} />
