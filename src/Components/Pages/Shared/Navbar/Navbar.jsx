@@ -70,14 +70,14 @@ const Navbar = () => {
       {user ? (
         <button
           onClick={logOut}
-          className="btn btn-ghost text-gray-900 font-semibold"
+          className=" bg-error btn font-semibold text-white"
         >
           Sign Out
         </button>
       ) : (
         <li>
           <NavLink
-            className={({ isActive }) => (isActive ? "activeLink" : "link")}
+            className="btn btn-success text-white"
             to="/login"
           >
             Login
